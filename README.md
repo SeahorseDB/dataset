@@ -1,6 +1,6 @@
 # 📂 YouTube Embedding Datasets (SeahorseDB)
 
-This repository provides datasets containing **CLIP-generated embeddings** and metadata for YouTube video clips. These datasets are part of the **SeahorseDB** collection, accessible on Hugging Face.
+This repository provides datasets containing **CLIP-generated embeddings** and metadata for YouTube video scenes. The embeddings are extracted based on **timestamps** indicating specific scenes within the videos. These datasets are part of the **SeahorseDB** collection, accessible on Hugging Face.
 
 ---
 
@@ -8,9 +8,9 @@ This repository provides datasets containing **CLIP-generated embeddings** and m
 
 | Dataset Name           | Size       | Description                                  |
 |------------------------|------------|----------------------------------------------|
-| `youtube-1M-dataset`   | 1 Million  | Contains CLIP embeddings and metadata for 1M YouTube video clips. |
-| `youtube-2M-dataset`   | 2 Million  | Contains CLIP embeddings and metadata for 2M YouTube video clips. |
-| `youtube-15M-dataset`  | 15 Million | Contains CLIP embeddings and metadata for 15M YouTube video clips. |
+| `youtube-1M-dataset`   | 1 Million  | Contains CLIP embeddings and metadata for 1M YouTube video scenes. |
+| `youtube-2M-dataset`   | 2 Million  | Contains CLIP embeddings and metadata for 2M YouTube video scenes. |
+| `youtube-15M-dataset`  | 15 Million | Contains CLIP embeddings and metadata for 15M YouTube video scenes. |
 
 All datasets are stored in **Parquet** format for efficient storage and processing.
 
@@ -22,13 +22,13 @@ Each dataset includes the following fields:
 
 | Field Name         | Data Type       | Description                                                                 |
 |--------------------|-----------------|-----------------------------------------------------------------------------|
-| `feature`          | sequence        | 1024-dimensional CLIP-generated embedding vector representing video clips. |
+| `feature`          | sequence        | 1024-dimensional CLIP-generated embedding vector representing the scene.    |
 | `title`            | string          | Title of the YouTube video.                                                 |
 | `channel_name`     | string          | Name of the YouTube channel hosting the video.                              |
 | `video_id`         | string          | Unique identifier for the YouTube video.                                    |
-| `timestamp`        | string          | Timestamp indicating the start/end of the video clip.                       |
+| `timestamp`        | string          | Timestamp indicating the specific scene in the video.                       |
 | `id`               | int64           | Unique identifier for each row.                                             |
-| `__index_level_0__`| int64           | Index information for Parquet row-level organization.                       |
+| `__index_level_0__`| int64           | Dummy field                                                                 |
 
 ---
 
@@ -50,5 +50,6 @@ df = pd.read_parquet("path/to/youtube-1M-dataset.parquet")
 print(df.head())
 
 # Access embeddings and metadata
-embeddings = df['feature'].tolist()  # 1024-dimensional embeddings
+embeddings = df['feature'].tolist()  # 1024-dimensional embeddings for scenes
+timestamps = df['timestamp'].tolist()
 metadata = df['title'].tolist()
