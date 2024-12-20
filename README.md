@@ -59,3 +59,5 @@ metadata = df['title'].tolist()
 # **Contributors**
 - Sehyeon Oh(sehyeon@dnotitia.com)
 - Daegon Yang(ydg@dnotitia.com)
+- Donggyu Park(donggyu.park@dnotitia.com)
+- Moohyeon Nam(mhnam@dnotitia.com)
