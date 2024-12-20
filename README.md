@@ -53,6 +53,8 @@ print(df.head())
 embeddings = df['feature'].tolist()  # 1024-dimensional embeddings for scenes
 timestamps = df['timestamp'].tolist()
 metadata = df['title'].tolist()
+```
+
 
 # **Contributors**
 - Sehyeon Oh(sehyeon@dnotitia.com)
